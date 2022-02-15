@@ -1,0 +1,9 @@
+<form action="" method="post" id="formDocumento">
+    <div class="modal-body">
+        {% csrf_token %} {{ form }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="btn-cancelar">Cancelar</button>
+        <button type="submit" id="btn-submit"></button>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+{% extends '../base.html' %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static 'Css/Css.css' %}"> {% endblock %} {% block content %} {% load static %}
+<div class="container">
+    <div class="mb-3">
+        <center>
+            <h1>Documentos</h1>
+            <input type="button" id="btnCreateDocument" onclick="btnCreateDocument()" class="btn btn-success" value="Crear documento">
+        </center>
+    </div>
+    <div class="row">
+        <div class="container col-7 mt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%if tDocumento %} {% for documento in tDocumento %}
+                    <tr id="tr-documento-{{documento.id}}">
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td id="tr-nombre-{{documento.id}}">{{documento.nombre}}</td>
+                        <td id="tr-descripcion-{{documento.id}}">{{documento.descripcion}}</td>
+                        <td>
+                            <button id="btn-update-{{documento.id}}" onclick=`${btnUpdate({{documento.id}})}` class="img-actions update">Actualizar</button>
+                            <button id="btn-delete-{{documento.id}}" onclick=`${btnDelete({{documento.id}})}` class="img-actions delete">Eliminar</button>
+                        </td>
+                    </tr>
+                    {% endfor %} {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" id="modalFormContainer" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <!--FORMULARIO CREAR DOCUMENTOFRFR-->
+            <div id="modalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="{% static 'javascript/Documentos.js' %}"></script>
+{% endblock %}
